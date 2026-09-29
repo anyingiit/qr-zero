@@ -91,10 +91,11 @@ function main(argv: string[]): number {
       : values.light;
   let moduleSize: number | undefined;
   if (values["module-size"] !== undefined) {
-    if (!/^\d+$/.test(values["module-size"]) || Number(values["module-size"]) === 0) {
+    const n = Number(values["module-size"]);
+    if (!/^\d+$/.test(values["module-size"]) || n === 0 || !Number.isSafeInteger(n)) {
       throw new UsageError(`--module-size must be a positive integer, got ${values["module-size"]}`);
     }
-    moduleSize = Number(values["module-size"]);
+    moduleSize = n;
   }
   const mode = (values.mode ?? "auto") as Mode | "auto";
   if (!["auto", "numeric", "alphanumeric", "byte"].includes(mode)) {

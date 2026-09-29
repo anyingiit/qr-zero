@@ -143,6 +143,8 @@ test("cli: usage errors exit 2, encoding errors exit 1", () => {
     ["x", "-o", "-", "--module-size", "-4"],
     ["x", "-o", "-", "--module-size", "2.5"],
     ["x", "-o", "-", "--module-size", "big"],
+    ["x", "-o", "-", "--module-size", "99999999999999999999"],
+    ["x", "-o", "-", "--module-size", "9".repeat(400)],
     ["x", "-o", "-", "--dark", ""],
     ["x", "-o", "-", "--light", ""],
     ["x", "--dark", "red"],
